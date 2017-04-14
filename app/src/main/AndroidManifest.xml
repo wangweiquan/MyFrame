@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="rxjava.simpledemo.com.rxjava" >
 
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -11,7 +12,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="rxjava.simpledemo.com.eventbus.EventBusActivity" >
+        <activity android:name="rxjava.simpledemo.com.rxjava.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

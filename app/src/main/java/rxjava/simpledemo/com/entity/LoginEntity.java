@@ -1,4 +1,4 @@
-package rxjava.simpledemo.com.rxjava;
+package rxjava.simpledemo.com.entity;
 
 /**
  * calssName

@@ -53,4 +53,5 @@ public class EventBusActivity extends BaseActivity {
     public void MyEventBus(MessageEventEntity event){
         Log.i("---eventbus---",event.msg);
     }
+
 }

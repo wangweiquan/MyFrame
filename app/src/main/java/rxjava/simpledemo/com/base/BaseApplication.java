@@ -11,7 +11,7 @@ import android.content.Context;
 
 public class BaseApplication extends Application{
 
-    private static Context mContext;
+    public static Context mContext;
 
     @Override
     public void onCreate() {
