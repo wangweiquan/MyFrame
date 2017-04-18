@@ -1,6 +1,5 @@
 package rxjava.simpledemo.com.manager;
 
-import android.text.TextUtils;
 import android.util.Log;
 
 import java.io.File;
@@ -132,16 +131,14 @@ public class RetrofitClient {
      * @return
      */
     protected static Interceptor getToken(){
-        final String token = null;
         Interceptor tokenInterceptor = new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
-                Request.Builder newRequest = request.newBuilder();
-                if(!TextUtils.isEmpty(token)){
-                    newRequest.header("Authorization",token);
-                }
-                return chain.proceed(newRequest.build());
+                Request newRequest = request.newBuilder()
+                        .header("Authorization","token")
+                        .build();
+                return chain.proceed(newRequest);
             }
         };
         return tokenInterceptor;

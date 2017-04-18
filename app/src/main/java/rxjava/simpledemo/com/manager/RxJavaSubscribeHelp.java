@@ -39,7 +39,7 @@ public abstract class RxJavaSubscribeHelp extends Subscriber {
 
     @Override
     public void onError(Throwable e) {
-       e.printStackTrace();
+        Log.v("onError-->","error");
     }
 
     /**
