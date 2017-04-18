@@ -2,9 +2,11 @@ package rxjava.simpledemo.com.manager;
 
 import android.util.Log;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -64,8 +66,13 @@ public class RetrofitClient {
         /**
          * ssl
          */
-        SSLUtils.SSLParams sslParams = SSLUtils.getSslSocketFactory();
+        SSLUtils.SSLParams sslParams = SSLUtils.getSslSocketFactory(null,null,null);
 
+        /**
+         * 本地缓存
+         */
+        File cacheFile = new File(BaseApplication.mContext.getCacheDir(), "myCache");
+        Cache cache = new Cache(cacheFile, 1024 * 1024 * 10);
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(READ_TIMEOUT, TimeUnit.MILLISECONDS)
@@ -73,10 +80,9 @@ public class RetrofitClient {
                 .addInterceptor(INTERCEPTOR_CACHE)
                 .addNetworkInterceptor(INTERCEPTOR_TOKEN)
                 .sslSocketFactory(sslParams.sslSocketFactory,sslParams.trustManager)
-                .
-
-
-        return null;
+                .cache(cache)
+                .build();
+        return okHttpClient;
     }
 
     /**
@@ -111,7 +117,7 @@ public class RetrofitClient {
                             .build();
                 } else {
                     return originalResponse.newBuilder()
-                            .header("Cache-Control", "public,only-if-cached,max-stale =" + 60 * 60 * 24)
+                            .header("Cache-Control", "public,only-if-cached,max-stale =" + 60 * 60 * 1)
                             .removeHeader("Pragma")
                             .build();
                 }

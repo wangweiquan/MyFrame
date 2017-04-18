@@ -2,7 +2,6 @@ package rxjava.simpledemo.com.api;
 
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import rx.Observable;
 import rxjava.simpledemo.com.api.net.BaseRequestBody;
@@ -10,6 +9,8 @@ import rxjava.simpledemo.com.base.BaseApi;
 import rxjava.simpledemo.com.entity.LoginEntity;
 import rxjava.simpledemo.com.entity.body.LoginRequestBody;
 import rxjava.simpledemo.com.manager.RequestManager;
+import rxjava.simpledemo.com.manager.RxJavaSchedulesHelp;
+import rxjava.simpledemo.com.manager.RxJavaSubscribeHelp;
 
 /**
  * api for login
@@ -37,9 +38,10 @@ public class LoginApi extends BaseApi{
     }
 
 
-    public void getLogin(LoginRequestBody loginRequestBody,){
-        api.Login(new BaseRequestBody<LoginRequestBody>(loginRequestBody).toRequestBody())
-                .compose()
-
+    public void getLogin(LoginRequestBody loginRequestBody, RxJavaSubscribeHelp subscribeAction) {
+        api.Login(new BaseRequestBody<>(loginRequestBody).toRequestBody())
+                .compose(RxJavaSchedulesHelp.<LoginEntity>getRxScheduleHelper())
+                .compose(RxJavaSchedulesHelp.<LoginEntity>getResponseHelper())
+                .subscribe(subscribeAction);
     }
 }
