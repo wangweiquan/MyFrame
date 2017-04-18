@@ -50,10 +50,9 @@ public class BaseRequestBody<T> implements Serializable{
             ver = ClientUtils.getAppVersion(BaseApplication.mContext);
             de = formatter.format(currDate);
             aid = ClientUtils.getAppName(BaseApplication.mContext);;
-            phone = "18235139790";
+            phone = "18916952130";
             businessType = "0";
-            id = "cid";
-            cd = "cd";
+            cd = "e34e15c66304f35476f72534a8e23ea9231778ff2709704d";
             return this;
         }
     }
