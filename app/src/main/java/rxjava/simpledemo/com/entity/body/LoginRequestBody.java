@@ -7,12 +7,12 @@ package rxjava.simpledemo.com.entity.body;
 
 public class LoginRequestBody {
     private String phone;
-    private String password;
     private String imei;
+    private String password;
 
-    public LoginRequestBody(String phone,String password,String imei){
+    public LoginRequestBody(String phone,String imei,String password){
         this.phone = phone;
-        this.password = password;
         this.imei = imei;
+        this.password = password;
     }
 }
