@@ -11,7 +11,7 @@
      */
     public interface Api {
         @Headers("Cache-Control: public,max-age = 60")
-        @POST("dzcx_cz/nm/regist/logon2")
+        @POST("你的接口地址")
         Observable<LoginEntity> Login(@Body RequestBody requestBody);
     }
 
@@ -21,7 +21,7 @@
      * 声明请求
      */
     public LoginApi(){
-        api = RequestManager.getRequest(Api.class,"https://test01.letzgo.com.cn:12016/");
+        api = RequestManager.getRequest(Api.class,"你的域名");
     }
 
 
