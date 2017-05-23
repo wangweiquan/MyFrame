@@ -5,26 +5,7 @@ package rxjava.simpledemo.com.entity;
  * Created by wangwq.
  */
 
-public class LoginEntity {
-
-    private int success;
-    private String msg;
-
-    public int getSuccess() {
-        return success;
-    }
-
-    public void setSuccess(int success) {
-        this.success = success;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
+public class LoginEntity extends BaseEntity {
 
     private Integer cid;
     private String city;
@@ -77,9 +58,7 @@ public class LoginEntity {
     @Override
     public String toString() {
         return "LoginEntity{" +
-                "success=" + success +
-                ", msg='" + msg + '\'' +
-                ", cid=" + cid +
+                "cid=" + cid +
                 ", city='" + city + '\'' +
                 ", cityId='" + cityId + '\'' +
                 ", signType='" + signType + '\'' +

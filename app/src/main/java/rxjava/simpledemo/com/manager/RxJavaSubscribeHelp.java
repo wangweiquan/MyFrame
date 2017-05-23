@@ -39,7 +39,19 @@ public abstract class RxJavaSubscribeHelp extends Subscriber {
 
     @Override
     public void onError(Throwable e) {
-       e.printStackTrace();
+        if (isShowDialog) {
+            Log.v("onError-->","dismiss dialog");
+        }
+        if (e instanceof InterfaceError) {
+            InterfaceError error = (InterfaceError) e;
+            _onError(error.getSuccess(),error.getResponse());
+        } else {
+            e.printStackTrace();
+        }
+    }
+
+    public void _onError(int errorCode,Object response){
+        //发送错误代码，presenter具体处理
     }
 
     /**

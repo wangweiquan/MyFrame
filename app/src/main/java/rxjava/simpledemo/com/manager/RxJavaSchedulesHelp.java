@@ -1,15 +1,18 @@
 package rxjava.simpledemo.com.manager;
 
+import java.util.Observer;
+
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
+import rxjava.simpledemo.com.entity.BaseEntity;
 
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 /**
- * Rxjava baseh
+ * Rxjava base
  * Created by wangwq.2017/4/17
  */
 
@@ -34,6 +37,13 @@ public class RxJavaSchedulesHelp {
                 return tObservable.flatMap(new Func1<T, Observable<T>>() {
                     @Override
                     public Observable<T> call(T response) {
+                        if(response instanceof BaseEntity){
+                            if(((BaseEntity) response).getSuccess() == 0){
+                                return createDate(response);
+                            }else {
+                                return Observable.error(new InterfaceError(((BaseEntity) response).getSuccess(), ((BaseEntity) response).getMsg(), response));
+                            }
+                        }
                         return createDate(response);
                     }
                 });
